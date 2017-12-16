@@ -1,32 +1,73 @@
 package com.company;
 
+import com.sun.tools.javah.Util;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+
 public class Main {
-
-    public static void main(String[] args) {
-
+    public static Matrix read(String input) {
         // the name of the file to open.
-        String fileName = "inputs/sample1.txt";
+        String fileName = input;
+        String backupfileName = input;
 
         // this will reference one line at a time
         String line = null;
+        String[] parts;
+        Matrix problem;
+        short counter = 0;
+        boolean flag = false;
+        int timeout = 0;
 
         try {
             //FileReader reads text files in the default encoding.
             FileReader fileReader = new FileReader(fileName);
+            FileReader backupfileReader = new FileReader(backupfileName);
+
 
             // Always warp FileReader in bufferedReader.
             BufferedReader bufferedReader = new BufferedReader(fileReader);
+            BufferedReader backup = new BufferedReader(backupfileReader); //backup the Address
 
             while ((line = bufferedReader.readLine()) != null) {
-                System.out.println(line);
+                counter++;
             }
+            problem = new Matrix(counter,counter);
+
+            //restore the backup to set the line reader to first
+            //Now The Matrix values will be assigned
+            counter = 0;
+            while ((line = backup.readLine()) != null) {
+                parts = line.split(" ");
+                for(int n = 0; n < parts.length; n++) {
+                    flag = problem.setValue(counter, n, Integer.parseInt(parts[n]));
+                    problem.setValue(counter, n, Integer.parseInt(parts[n]));
+
+                    //Verify that the value has been assigned. We used timeout
+                    if(!flag) {
+                        if(timeout == 3) {
+                            System.out.println("Failed to set the value! Check the Source Code!");
+                            System.exit(0);
+                        }
+                        System.out.println("Failed to set [" + counter + "][" + n + "]'s value. Trying Again...");
+                        timeout++;
+                        n--;
+                    } else {
+                        flag = false;
+                        timeout = 0;
+                    }
+                }
+                counter++;
+            }
+
             //always close files.
             bufferedReader.close();
+            backup.close();
+
+            return problem;
 
         } catch (FileNotFoundException ex) {
             System.out.println("Unable to open file '" + fileName + "'");
@@ -36,8 +77,12 @@ public class Main {
             // or we could just do this:
             // ex.printStackTrance();
         }
+        return null;
+    }
 
-
+    public static void main(String[] args) {
+        Matrix problem = read("inputs/sample1.txt");
+        problem.show();
     }
 
 

@@ -24,10 +24,16 @@ public class Matrix {
         }
     }
 
+    public boolean setValue(int i, int j, int value) {
+        this.data[i][j] = value;
+        return true;
+    }
+
     public void show() {
         for (int i = 0; i < M; i++) {
             for (int j = 0; j < N; j++) {
-                System.out.printf("%9.4f", data[i][j]);
+                System.out.printf("%d", data[i][j]);
+                System.out.print(" ");
             }
             System.out.println();
         }
