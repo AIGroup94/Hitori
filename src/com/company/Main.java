@@ -10,7 +10,7 @@ public class Main {
     public static void main(String[] args) {
 
         // the name of the file to open.
-        String fileName = "test1.txt";
+        String fileName = "inputs/sample1.txt";
 
         // this will reference one line at a time
         String line = null;
