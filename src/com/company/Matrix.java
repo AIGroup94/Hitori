@@ -12,6 +12,7 @@ public class Matrix {
         data = new int[M][N];
     }
 
+
     //create matrix based on 2d array
     public Matrix(int[][] data) {
         M = data.length;
@@ -32,4 +33,16 @@ public class Matrix {
             System.out.println();
         }
     }
+
+    public void show_row_col(int x,int y)
+    {
+        int a [][]= new int [2][data.length] ;
+        for ( int i= 0 ; i<data.length;i++) {
+            a[0][i] = this.data[x][i];
+        }
+        for(int j=0; j<data.length;j++)
+            a [1][j]=this.data[j][y];
+    }
+
+
 }
