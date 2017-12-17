@@ -86,6 +86,7 @@ public class Main {
         int[][] dup = new int[2][problem.getM()];
         dup = problem.getRow_Column(0);
         ArrayList<ArrayList<Integer>> Result = problem.findDuplicate(dup);
+      
     }
 
 
