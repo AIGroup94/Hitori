@@ -7,6 +7,7 @@ public class Matrix {
     private int M; //number of rows.
     private int N; // number of columns.
     private int[][] data;// M By N array.
+    private int WholeDuplicates;
 
     // create M by N matrix of 0's.
     public Matrix(int M, int N) {
@@ -17,6 +18,10 @@ public class Matrix {
 
     public int getM() {
         return M;
+    }
+
+    public void setWholeDuplicates(int wholeDuplicates) {
+        WholeDuplicates = wholeDuplicates;
     }
 
     public int getN() {
@@ -97,6 +102,40 @@ public class Matrix {
         }
         return result;
     }
+
+    public int NumberOfDuplicates (int[][] data) {
+        int h = 0;
+        HashSet<Integer> set = new HashSet<Integer>();
+
+        for (int arrayElement : data[0])
+        {
+            if(!set.add(arrayElement))
+            {
+                System.out.println("Duplicate Elements in row are : "+arrayElement);
+                h++;
+
+            }
+        }
+        System.out.println();
+        set.clear();
+        for (int arrayElement : data[1])
+        {
+            if(!set.add(arrayElement))
+            {
+                System.out.println("Duplicate Elements in column are : "+arrayElement);
+                h++;
+            }
+        }
+        return h;
+    }
+
+    public void setWholeDuplicate() {
+         WholeDuplicates = 0;
+        for (int i = 0; i < M; i++) {
+            WholeDuplicates += NumberOfDuplicates(getRow_Column(i));
+        }
+    }
+
 
 }
 

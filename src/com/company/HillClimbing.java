@@ -11,8 +11,11 @@ public class HillClimbing {
 
     }
 
-    private int Calculate_H(Matrix problem) {
+    private int Calculate_H() {
         int h = 0;
+        for (int i = 0; i < this.data.getM(); i++) {
+
+        }
 
 
         return h;
