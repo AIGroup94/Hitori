@@ -131,9 +131,15 @@ public class Matrix {
 
     public void setWholeDuplicate() {
          WholeDuplicates = 0;
+         int temp;
+         int temp1;
         for (int i = 0; i < M; i++) {
-            WholeDuplicates += NumberOfDuplicates(getRow_Column(i));
+            temp = WholeDuplicates;
+            temp1 = NumberOfDuplicates(getRow_Column(i));
+            WholeDuplicates += temp1;
+            System.out.println(temp + " + " + temp1 + " = " + WholeDuplicates);
         }
+        System.out.println("The whole duplicates: " + WholeDuplicates);
     }
 
 
