@@ -1,13 +1,11 @@
 package com.company;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> ce99ef2f223426615def443c3058792d15cd8ba5
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
 
 
 public class Main {
@@ -85,6 +83,9 @@ public class Main {
     public static void main(String[] args) {
         Matrix problem = read("inputs/sample1.txt");
         problem.show();
+        int[][] dup = new int[2][problem.getM()];
+        dup = problem.getRow_Column(1);
+        ArrayList<ArrayList<Integer>> Result = problem.findDuplicate(dup);
     }
 
 
