@@ -83,9 +83,9 @@ public class Main {
     public static void main(String[] args) {
         Matrix problem = read("inputs/sample1.txt");
         problem.show();
-        int[][] dup = new int[2][problem.getM()];
-        dup = problem.getRow_Column(0);
-        ArrayList<ArrayList<Integer>> Result = problem.findDuplicate(dup);
+        /*int[][] dup = new int[2][problem.getM()];
+        dup = problem.getRow_Column(0);*/
+        ArrayList<ArrayList<Integer>> Result = problem.findDuplicate(problem.getRow_Column(1));
     }
 
 
