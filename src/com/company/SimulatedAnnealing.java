@@ -2,7 +2,7 @@ package com.company;
 
 import java.util.Random;
 
-public class HillClimbing {
+public class SimulatedAnnealing {
     private static boolean WHITE = false;
     private static boolean BLACK = true;
 
@@ -11,10 +11,10 @@ public class HillClimbing {
     int cost;
 
 
-    public HillClimbing(Matrix problem) {
+    public SimulatedAnnealing(Matrix problem) {
         this.data = problem;
         //this.cost = this.data.setWholeDuplicate();
-        init_status();
+        this.init_status();
 
     }
 
@@ -51,6 +51,7 @@ public class HillClimbing {
      */
 
     public void Rule() {
+
         int cost = 0;
         int BLACK_COUNT;
         int i,j,k;
@@ -84,10 +85,10 @@ public class HillClimbing {
 
         for(i = 0;i < M;i++){
             for(j = 0;j < M;j++)    {
-                if(j + 1 < M && status[i][j]==BLACK && status[i][j+1]==BLACK){
+                if(j + 1 < M && this.status[i][j]==BLACK && this.status[i][j+1]==BLACK){
                     cost++;
                 }
-                if(i+1 < M && status[i][j]==BLACK && status[i+1][j]==BLACK){
+                if(i+1 < M && this.status[i][j]==BLACK && this.status[i+1][j]==BLACK){
                     cost++;
                 }
             }
@@ -98,18 +99,18 @@ public class HillClimbing {
             for(j = 0;j < M;j++){
                 BLACK_COUNT = 0;
                 // counts only one of the indexes is black
-                if(status[i][j]==WHITE){
+                if(this.status[i][j]==WHITE){
 
-                    if(j+1 < M && status[i][j+1]==BLACK){
+                    if(j+1 < M && this.status[i][j+1]==BLACK){
                         BLACK_COUNT++;
                     }
-                    if(i+1 < M && status[i+1][j]==BLACK){
+                    if(i+1 < M && this.status[i+1][j]==BLACK){
                         BLACK_COUNT++;
                     }
-                    if(j-1 >= 0 && status[i][j-1]==BLACK){
+                    if(j-1 >= 0 && this.status[i][j-1]==BLACK){
                         BLACK_COUNT++;
                     }
-                    if(i-1 >= 0 && status[i-1][j]==BLACK){
+                    if(i-1 >= 0 && this.status[i-1][j]==BLACK){
                         BLACK_COUNT++;
                     }
 
@@ -146,19 +147,21 @@ public class HillClimbing {
      *
      */
 
-    public void do_HillClimbing() {
-
+    public void do_SimlulatedAnnealing() {
+        float T = 10;
         int size = this.data.getM();
         int N = size * size;
         int randI, randJ;
         int cost1, cost2;
         int failure = 0;
+        float p;
         Random rand = new Random();
 
         while (true) {
             for (int i = 0; i < 2 * N; i++) {
                 randI = rand.nextInt(1000) % size;
                 randJ = rand.nextInt(1000) % size;
+
 
                 this.Rule();
                 cost1 = this.cost;
@@ -174,29 +177,36 @@ public class HillClimbing {
                 } else {
                     this.status[randI][randJ] = WHITE;
                 }
+                //this.showStatus();
 
                 this.Rule();
                 cost2 = this.cost;
 
                 if (cost2 <= cost1) {
                     failure = 0;
-                } else {
+                } else{
 
-                    failure++;
+                    p = rand.nextInt(1000)/1000f;
+                    if( p < Math.exp(-(cost2-cost1)/T)){
 
-                    if(this.status[randI][randJ]==WHITE){
-                        this.status[randI][randJ]=BLACK;
+                        failure=0;
                     }
                     else{
-                        this.status[randI][randJ]=WHITE;
-                    }
-                    if(failure==6*N) {
-                        System.out.println("No more move Achievement");
-                    }
+                        failure++;
 
+                        if(this.status[randI][randJ]==WHITE){
+                            this.status[randI][randJ]=BLACK;
+                        }
+                        else{
+                            this.status[randI][randJ]=WHITE;
+                        }
+                        if(failure==6*N)
+                            return;
+                    }
                 }
 
             }
+            T *= 0.999f;
         }
 
 

@@ -81,14 +81,24 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        Matrix problem = read("inputs/sample3.txt");
+        Matrix problem = read("inputs/sample1.txt");
         problem.show();
-        System.out.println(problem.setWholeDuplicate());
+        //System.out.println(problem.setWholeDuplicate());
 /*        int[][] dup = new int[2][problem.getM()];
           dup = problem.getRow_Column(0);
 */
-        ArrayList<ArrayList<Integer>> Result = problem.findDuplicate(problem.getRow_Column(0));
+        SimulatedAnnealing SA = new SimulatedAnnealing(problem);
+        HillClimbing HC = new HillClimbing(problem);
 
+        System.out.println("Hill Climbing: ");
+
+        HC.do_HillClimbing();
+        HC.showStatus();
+
+        System.out.println("Simulated Annealing: ");
+
+        SA.do_SimlulatedAnnealing();
+        SA.showStatus();
     }
 
 
