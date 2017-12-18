@@ -3,6 +3,8 @@ package com.company;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+int BLACK = 1;
+
 public class Matrix {
     private int M; //number of rows.
     private int N; // number of columns.
@@ -136,6 +138,99 @@ public class Matrix {
         }
         return WholeDuplicates;
     }
+
+    public int cost(){
+        int errorCounter=0,counter;
+        int i,j,k;
+
+//this func has been defined
+        for(i=0;i<M;i++){
+            for(j=0;j<M;j++){
+                if(color[i][j]==WHITE){
+                    for(k=j+1;k<M;k++){
+                        if(color[i][k]==WHITE && hitori[i][k]==hitori[i][j]){
+                            errorCounter++;
+                        }
+                    }
+
+                }
+            }
+        }
+
+        for(j=0;j<M;j++){
+            for(i=0;i<M;i++){
+                if(color[i][j]==WHITE){
+                    for(k=i+1;k<M;k++){
+                        if(color[k][j]==WHITE && hitori[k][j]==hitori[i][j]){
+                            errorCounter++;
+                        }
+                    }
+
+                }
+            }
+        }
+//========================================================================================
+
+
+        for(i=0;i<M;i++){
+            for(j=0;j<M;j++)    {
+                if(j+1<M && color[i][j]==BLACK && color[i][j+1]==BLACK){
+                    errorCounter++;
+                }
+                if(i+1<M && color[i][j]==BLACK && color[i+1][j]==BLACK){
+                    errorCounter++;
+                }
+            }
+        }
+
+//    checks a white index not surrounded by black indexes
+        for(i=0;i<M;i++){
+            for(j=0;j<M;j++){
+                counter=0;
+                // only one of the indexes is black
+                if(color[i][j]==WHITE){
+
+                    if(j+1<M && color[i][j+1]==BLACK){
+                        counter++;
+                    }
+                    if(i+1<M && color[i+1][j]==BLACK){
+                        counter++;
+                    }
+                    if(j-1>=0 && color[i][j-1]==BLACK){
+                        counter++;
+                    }
+                    if(i-1>=0 && color[i-1][j]==BLACK){
+                        counter++;
+                    }
+
+
+                    if(i==0 && j==0 && counter==2)
+                        errorCounter++;
+                    else if(i==0 && j==M-1 && counter==2)
+                        errorCounter++;
+                    else if(i==M-1 && j==M-1 && counter==2)
+                        errorCounter++;
+                    else if(i==M-1 && j==0 && counter==2)
+                        errorCounter++;
+                    else if(i==0 && counter==3)
+                        errorCounter++;
+                    else if(i==M-1 && counter==3)
+                        errorCounter++;
+                    else if(j==0 && counter==3)
+                        errorCounter++;
+                    else if(j==M-1 && counter==3)
+                        errorCounter++;
+                    else if(counter==4)
+                        errorCounter++;
+                }
+
+            }
+        }
+
+
+        return errorCounter;
+    }
+
 
 
 }
