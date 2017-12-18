@@ -129,17 +129,12 @@ public class Matrix {
         return h;
     }
 
-    public void setWholeDuplicate() {
+    public int setWholeDuplicate() {
          WholeDuplicates = 0;
-         int temp;
-         int temp1;
         for (int i = 0; i < M; i++) {
-            temp = WholeDuplicates;
-            temp1 = NumberOfDuplicates(getRow_Column(i));
-            WholeDuplicates += temp1;
-            System.out.println(temp + " + " + temp1 + " = " + WholeDuplicates);
+            WholeDuplicates += NumberOfDuplicates(getRow_Column(i));
         }
-        System.out.println("The whole duplicates: " + WholeDuplicates);
+        return WholeDuplicates;
     }
 
 

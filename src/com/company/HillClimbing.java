@@ -8,13 +8,14 @@ public class HillClimbing {
 
     public HillClimbing(Matrix problem) {
         this.data = problem;
-        this.data.setWholeDuplicate();
+        this.h = this.data.setWholeDuplicate();
+        init_status();
 
     }
 
-    public void init_status(int [][]status) {
+    private void init_status() {
         this.status = new int[data.getM()][data.getN()];
-        for( int i =0 ; i < data.getM();i++){
+        for( int i = 0 ; i < data.getM();i++){
             for(int j =0; j < data.getN();j++){
                 this.status[i][j]= 0;
             }
@@ -23,6 +24,10 @@ public class HillClimbing {
     }
 
     public void setOne(int x,int y) { this.status[x][y] = 1; }
+
+    public void assignDuplicates() {
+
+    }
 
     public void showStatus(){
         for (int i = 0; i < status.length; i++) {
