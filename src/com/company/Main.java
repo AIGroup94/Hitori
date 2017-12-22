@@ -81,12 +81,9 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        Matrix problem = read("inputs/sample1.txt");
+        Matrix problem = read("inputs/sample4.txt");
         problem.show();
-        //System.out.println(problem.setWholeDuplicate());
-/*        int[][] dup = new int[2][problem.getM()];
-          dup = problem.getRow_Column(0);
-*/
+
         SimulatedAnnealing SA = new SimulatedAnnealing(problem);
         HillClimbing HC = new HillClimbing(problem);
 
