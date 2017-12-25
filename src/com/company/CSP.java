@@ -54,7 +54,7 @@ public class CSP {
             }
         }
         if (!this.BackTracking(0)) {
-            System.out.println("Problem Didn't Solve!");
+            System.out.println("Problem Did Solve!");
         }
 
 
@@ -75,9 +75,9 @@ public class CSP {
     }
 
     public boolean BackTracking(int count) {
-        if (isGoal()) {
+        if (count-1 == this.Variables.size()) //is GOAL in the depth of n
             return true;
-        }
+
         if (this.Variables.get(this.Candidates.get(count).i()).get(this.Candidates.get(count).j()).setValue(1)) {
             this.show();
             System.out.println("\n\n" + count + "============================");
