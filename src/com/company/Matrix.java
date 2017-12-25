@@ -107,35 +107,5 @@ public class Matrix {
         return findDuplicate(getRow_Column(x));
     }
 
-    /*public int NumberOfDuplicates(int[][] data) {
-        int h = 0;
-        HashSet<Integer> set = new HashSet<Integer>();
-
-        for (int arrayElement : data[0]) {
-            if (!set.add(arrayElement)) {
-                //System.out.println("Duplicate Elements in row are : " + arrayElement);
-                h++;
-
-            }
-        }
-        System.out.println();
-        set.clear();
-        for (int arrayElement : data[1]) {
-            if (!set.add(arrayElement)) {
-                //System.out.println("Duplicate Elements in column are : " + arrayElement);
-                h++;
-            }
-        }
-        return h;
-    }
-
-    public int setWholeDuplicate() {
-        WholeDuplicates = 0;
-        for (int i = 0; i < M; i++) {
-            WholeDuplicates += NumberOfDuplicates(getRow_Column(i));
-        }
-        return WholeDuplicates;
-    }*/
-
 }
 

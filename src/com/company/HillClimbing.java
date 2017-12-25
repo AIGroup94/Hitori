@@ -120,8 +120,6 @@ public class HillClimbing {
                         cost++;
                     else if(i == M-1 && j == M-1 && BLACK_COUNT==2)
                         cost++;
-                    /*else if(i==M-1 && j==M-1 && counter==2)
-                        cost++;*/
                     else if(i == 0 && BLACK_COUNT==3)
                         cost++;
                     else if(i == M-1 && BLACK_COUNT==3)
@@ -178,7 +176,7 @@ public class HillClimbing {
                 this.Rule();
                 cost2 = this.cost;
 
-                if (cost2 <= cost1) {
+                if (cost2 < cost1) {
                     failure = 0;
                 } else {
 
@@ -191,7 +189,9 @@ public class HillClimbing {
                         this.status[randI][randJ]=WHITE;
                     }
                     if(failure==6*N) {
-                        System.out.println("No more move Achievement");
+                        System.out.println("Algorithm reached at Local Maximum with the heuristic of " + this.cost);
+
+                        return;
                     }
 
                 }

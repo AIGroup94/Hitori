@@ -13,7 +13,6 @@ public class SimulatedAnnealing {
 
     public SimulatedAnnealing(Matrix problem) {
         this.data = problem;
-        //this.cost = this.data.setWholeDuplicate();
         this.init_status();
 
     }

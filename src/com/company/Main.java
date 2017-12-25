@@ -5,8 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
-
 
 public class Main {
     public static Matrix read(String input) {
@@ -74,17 +72,16 @@ public class Main {
 
         } catch (IOException ex) {
             System.out.println("Error reading file ' " + fileName + "'");
-            // or we could just do this:
             // ex.printStackTrance();
         }
         return null;
     }
 
     public static void main(String[] args) {
-        Matrix problem = read("inputs/sample1.txt");
+        Matrix problem = read("inputs/sample2.txt");
         problem.show();
 
-        /*
+
         SimulatedAnnealing SA = new SimulatedAnnealing(problem);
         HillClimbing HC = new HillClimbing(problem);
 
@@ -97,7 +94,7 @@ public class Main {
 
         SA.do_SimlulatedAnnealing();
         SA.showStatus();
-        */
+
 
         CSP problem1 = new CSP(problem);
     }
