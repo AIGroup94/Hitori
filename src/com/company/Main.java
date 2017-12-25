@@ -81,9 +81,10 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        Matrix problem = read("inputs/sample4.txt");
+        Matrix problem = read("inputs/sample1.txt");
         problem.show();
 
+        /*
         SimulatedAnnealing SA = new SimulatedAnnealing(problem);
         HillClimbing HC = new HillClimbing(problem);
 
@@ -96,6 +97,9 @@ public class Main {
 
         SA.do_SimlulatedAnnealing();
         SA.showStatus();
+        */
+
+        CSP problem1 = new CSP(problem);
     }
 
 

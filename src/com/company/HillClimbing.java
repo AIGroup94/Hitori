@@ -19,8 +19,8 @@ public class HillClimbing {
     }
 
     private void init_status() {
-        this.status = new boolean[data.getM()][data.getN()];
-        for( int i = 0 ; i < data.getM();i++){
+        this.status = new boolean[data.getR()][data.getN()];
+        for( int i = 0 ; i < data.getR();i++){
             for(int j =0; j < data.getN();j++){
                 this.status[i][j]= WHITE;
             }
@@ -34,7 +34,7 @@ public class HillClimbing {
         for (int i = 0; i < this.status.length; i++) {
             for (int j = 0; j < this.status.length; j++) {
                 if (this.status[i][j] == WHITE) {
-                    System.out.print(this.data.getIndex(i,j) + " ");
+                    System.out.print(this.data.getValue(i,j) + " ");
                 } else
                     System.out.print("B ");
 
@@ -54,13 +54,13 @@ public class HillClimbing {
         int cost = 0;
         int BLACK_COUNT;
         int i,j,k;
-        int M = this.data.getM();
+        int M = this.data.getR();
 
         for(i=0;i<M;i++){
             for(j=0;j<M;j++){
                 if(this.status[i][j]==WHITE){
                     for(k=j+1;k<M;k++){
-                        if(this.status[i][k]==WHITE && this.data.getIndex(i,k)==this.data.getIndex(i,j)){
+                        if(this.status[i][k]==WHITE && this.data.getValue(i,k)==this.data.getValue(i,j)){
                             cost++;
                         }
                     }
@@ -73,7 +73,7 @@ public class HillClimbing {
             for(i=0;i<M;i++){
                 if(this.status[i][j]==WHITE){
                     for(k=i+1;k<M;k++){
-                        if(this.status[k][j]==WHITE && this.data.getIndex(k,j)==this.data.getIndex(i,j)){
+                        if(this.status[k][j]==WHITE && this.data.getValue(k,j)==this.data.getValue(i,j)){
                             cost++;
                         }
                     }
@@ -148,7 +148,7 @@ public class HillClimbing {
 
     public void do_HillClimbing() {
 
-        int size = this.data.getM();
+        int size = this.data.getR();
         int N = size * size;
         int randI, randJ;
         int cost1, cost2;

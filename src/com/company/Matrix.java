@@ -6,20 +6,20 @@ import java.util.HashSet;
 public class Matrix {
     //Two Global Variables to assign into our
 
-    private int M; //number of rows.
-    private int N; // number of columns.
+    private int     R; //number of rows.
+    private int     N; // number of columns.
     private int[][] data;// M By N array.
-    private int WholeDuplicates;
+    private int     WholeDuplicates;
 
     // create M by N matrix of 0's.
     public Matrix(int M, int N) {
-        this.M = M;
+        this.R = M;
         this.N = N;
         data = new int[M][N];
     }
 
-    public int getM() {
-        return M;
+    public int getR() {
+        return R;
     }
 
     public int getN() {
@@ -30,17 +30,17 @@ public class Matrix {
         return data;
     }
 
-    public int getIndex(int i, int j) {
+    public int getValue(int i, int j) {
         return data[i][j];
     }
 
 
     //create matrix based on 2d array
     public Matrix(int[][] data) {
-        M = data.length;
+        R = data.length;
         N = data[0].length;
-        this.data = new int[M][N];
-        for (int i = 0; i < M; i++) {
+        this.data = new int[R][N];
+        for (int i = 0; i < R; i++) {
             for (int j = 0; j < N; j++) {
                 this.data[i][j] = data[i][j];
             }
@@ -53,7 +53,7 @@ public class Matrix {
     }
 
     public void show() {
-        for (int i = 0; i < M; i++) {
+        for (int i = 0; i < R; i++) {
             for (int j = 0; j < N; j++) {
                 System.out.printf("%d", data[i][j]);
                 System.out.print(" ");
@@ -63,7 +63,7 @@ public class Matrix {
         return;
     }
 
-    /*public int[][] getRow_Column(int x) {
+    public int[][] getRow_Column(int x) {
         int a[][] = new int[2][data.length];
         int i;
         //gets the column numbers at the same row
@@ -86,7 +86,7 @@ public class Matrix {
 
         for (int arrayElement : data[0]) {
             if (!set.add(arrayElement)) {
-                System.out.println("Duplicate Elements in row are : " + arrayElement);
+                //System.out.println("Duplicate Elements in row are : " + arrayElement);
                 result.get(0).add(arrayElement);
 
             }
@@ -95,7 +95,7 @@ public class Matrix {
         set.clear();
         for (int arrayElement : data[1]) {
             if (!set.add(arrayElement)) {
-                System.out.println("Duplicate Elements in column are : " + arrayElement);
+                //System.out.println("Duplicate Elements in column are : " + arrayElement);
                 result.get(1).add(arrayElement);
 
             }
@@ -103,7 +103,11 @@ public class Matrix {
         return result;
     }
 
-    public int NumberOfDuplicates(int[][] data) {
+    public ArrayList<ArrayList<Integer>> getSameOfTheRowAndColumn(int x) {
+        return findDuplicate(getRow_Column(x));
+    }
+
+    /*public int NumberOfDuplicates(int[][] data) {
         int h = 0;
         HashSet<Integer> set = new HashSet<Integer>();
 
